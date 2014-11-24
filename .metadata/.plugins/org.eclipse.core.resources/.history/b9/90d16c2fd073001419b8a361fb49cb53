@@ -1,0 +1,24 @@
+#include <msp430.h> 
+
+/*
+ * main.c
+ */
+
+void configureClocks();
+volatile unsigned i;
+
+int main(void) {
+    WDTCTL = WDTPW | WDTHOLD;	// Stop watchdog timer
+	configureClocks();
+
+	//ConfigureLED on P1.0;
+	P1DIR = BIT0;
+	P1OUT = ~BIT0;
+
+
+
+	//Configure switch on P1.3;
+	P1REN |= BIT3;
+
+	return 0;
+}
